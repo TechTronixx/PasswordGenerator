@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900|IBM+Plex+Mono');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,500&display=swap');
 * {
   margin: 0;
   color: #787a91;
@@ -7,10 +8,9 @@
   line-height: 1.5em;
   font-size: 100%;
 }
-
   .copyr {
   color: #787a91;
-  font-family:Cambria ;
+  font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 20px;
  
@@ -173,14 +173,16 @@
 }
 
 .submit-btn:hover {
-  background: #1aaa55;
-  border: 1px solid #1aaa55;
+  
+  background: #2fce74;
+  border: 1px solid #2fce74; 
 }
 
 .submit-btn:active {
-  background: #168f48;
-  border: 1px solid #168f48;
-  padding: 12px 25px 8px;
+ 
+  background: #2fce74;
+  border: 1px solid #2fce74;
+  padding: 12px 25px 9px; 
 }
 
 .submit-btn.inactive {
@@ -193,6 +195,7 @@
   display: block;
   width: 100%;
   height: 100%;
+  padding: 8px 20px 7px 20px;
 /* 
   padding: 8px 20px 7px 20px;
   margin-left: -3px;
