@@ -6,9 +6,8 @@ The goal is to generate 3 random passwords of 12 characters. The user can choose
 There is also an option to remove ambiguous characters.
   
 
-  
 ## Usecase
-Generating Passwords
+Generating Passwords.
 
 ## Licence
-Free to use and edit
+Free to use and edit.
