@@ -11,6 +11,11 @@ http://passgenx.tech/
 ## Usecase
 Generating Passwords.
 
+## Preview
+<p align="center">
+  <img src="https://github.com/TechTronixx/PasswordGenerator/blob/master/S1.jpg" alt="Password Generator" />
+</p>
+
 ## Licence
 Free to use and edit.
 
