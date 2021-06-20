@@ -10,9 +10,10 @@
 
   .copyr {
   color: #787a91;
-  font-family:Arial, 
-  font-style: bold;
+  font-family:Cambria ;
+  font-weight: 700;
   font-size: 20px;
+ 
   text-align: center;
 }
 
@@ -27,9 +28,9 @@
 
 .flex-side {
   background-color: #CFEBE9;
-  padding: 20px;
+  /* padding: 20px; */
   flex: 1;
-  min-height: 100vh;
+  min-height: 60%;
 }
 
 .flex-side:nth-child(2) {
@@ -188,14 +189,24 @@
 }
 
 .copy-btn {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+/* 
   padding: 8px 20px 7px 20px;
   margin-left: -3px;
-  font-size: 0.9em;
+  font-size: 0.9em; */
 }
 
 .copy-btn:hover {
-  background: #1aaa55;
-  border: 1px solid #1aaa55;
+
+  background: transparent;
+  color: #76aef1;
+  box-shadow: none;
+
+  /* background: #1aaa55;
+  border: 1px solid #1aaa55; */
 }
 
 .copy-btn:active {
