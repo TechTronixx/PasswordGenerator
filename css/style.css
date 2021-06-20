@@ -8,6 +8,14 @@
   font-size: 100%;
 }
 
+  .copyr {
+  color: #787a91;
+  font-family:Arial, Helvetica, sans-serif;
+  font-style: bold;
+  font-size: 20px;
+  text-align: center;
+}
+
 .flex-container {
   display: flex;
 }
@@ -93,6 +101,7 @@
   left: 6px;
   height: 18px;
   width: 18px;
+  border: 1px solid grey;
   background-color: #ddd;
 }
 
