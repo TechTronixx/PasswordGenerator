@@ -18,7 +18,7 @@
 }
 
 .flex-side {
-  background-color: #f4f5fa;
+  background-color: #C3F6B4;
   padding: 20px;
   flex: 1;
   min-height: 100vh;
@@ -54,7 +54,7 @@
 }
 
 .center-content h1 {
-  color: #2c509e;
+  color: #3CB7D4;
   font-size: 5em;
   font-weight: 700;
   text-align: left;
