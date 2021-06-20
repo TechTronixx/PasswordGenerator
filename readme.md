@@ -12,5 +12,5 @@ Generating Passwords.
 ## Licence
 Free to use and edit.
 
-##Site Description  
+## Site Description  
 http://passgenx.tech/
