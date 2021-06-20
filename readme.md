@@ -7,13 +7,13 @@ There is also an option to remove ambiguous characters.
   
 You can see a [**live DEMO here**](https://mkspcd.github.io/password-generator/).  
   
-  
-<p align="center">
+  //add image here
+//< p align="center">
   <img src="https://raw.githubusercontent.com/mkspcd/password-generator/master/screenshot.png" alt="Password Generator" />
 </p>
   
-## Why ?
-Because.
+## Usecase
+Generating Passwords
 
 ## Licence
-If you're an adult, do what you want with it. If you're not, ask your parents.
+Free to use and edit
