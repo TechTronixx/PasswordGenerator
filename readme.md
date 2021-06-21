@@ -8,8 +8,12 @@ There is also an option to remove ambiguous characters.
 ## Site Description  
 http://passgenx.tech/
 
-## Usecase
-Generating Passwords.
+## Working
+The password is generated with the help of javascript. This code consists of various functions to generate a desired password for the user.
+The length of the password is set to 12 characters.
+The combination consists of using various ways such as numbers, symbols, characters, which are added to charpool, and based on the requirements. The passwords are generated.
+There are further added options to include or exclude repetitive characters, as required. 
+
 
 ## Preview
 <p align="center">
