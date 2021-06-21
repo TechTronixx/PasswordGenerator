@@ -13,6 +13,7 @@ http://passgenx.tech/
 
 The password is generated with the help of javascript. The code consists of various functions to generate a password as desired by the user.
 The length of the password is set to 12 characters.
+There are 3 sets of passwords randomly generated for the user to pick as required.
 The combination consists of using various ways such as numbers, symbols, characters, which are added to charpool, and based on the requirements. The passwords are generated.
 There are further added options to include or exclude repetitive characters, as required. 
 
