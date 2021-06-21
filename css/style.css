@@ -225,7 +225,7 @@
 
 .password-result>input[type=text] {
   background-color: #fdffff;
-  border: 1px solid #ddd;
+  border: 3px solid #ddd;
   outline: 0;
   padding: 5px 10px;
   text-align: center;
