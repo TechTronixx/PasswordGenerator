@@ -9,6 +9,9 @@ There is also an option to remove ambiguous characters.
 
 http://passgenx.tech/
 
+## Site Status
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c5d145f6-0c47-4e9f-bb08-4749e8700731/deploy-status)](https://app.netlify.com/sites/pass-genx/deploys)
+
 ## Working
 
 The password is generated with the help of javascript. The code consists of various functions to generate a password as desired by the user.
