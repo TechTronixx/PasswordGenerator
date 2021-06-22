@@ -1,20 +1,37 @@
 @import url('https://fonts.googleapis.com/css?family=Lato:400,900|IBM+Plex+Mono');
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,500&display=swap');
+
 * {
   margin: 0;
   color: #787a91;
   font-family: 'Lato', sans-serif;
   font-size: 20px;
-  line-height: 1.5em;
+  line-height: 1.9 em;
   font-size: 100%;
 }
-  .copyr {
+footer {
+  position: relative;
+  height: 20px;
+  width: 100%;
+}
+
+p.copyright {
+  position: absolute;
+  width: 100%;
+  font-weight: 498;
+  line-height: 40px;
+  font-size: 6 em;
+  text-align: center;
+  bottom: 0;
+}
+
+  /* .copyr {
   color: #787a91;
   font-family: 'Poppins', sans-serif;
   font-weight: 700;
   font-size: 20px;
   text-align: center;
-}
+} */
 
 .flex-container {
   display: flex;
@@ -246,6 +263,6 @@
 }
 
 .center-results {
-  width: 50%;
-  margin: 50% 25%;
+  width: 37%;
+  margin: 37% 37%;
 }
