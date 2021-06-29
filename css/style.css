@@ -85,7 +85,8 @@ p.copyright {
   display: block;
   position: relative;
   padding-left: 35px;
-  margin-top: 20px;
+  Margin:10px 30px 12px 5px;
+  /* margin-top: 20px; */
   cursor: pointer;
   font-size: 22px;
   -webkit-user-select: none;
