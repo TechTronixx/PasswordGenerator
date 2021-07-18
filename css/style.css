@@ -9,11 +9,23 @@
   line-height: 1.9 em;
   font-size: 100%;
 }
+
 footer {
   position: relative;
   height: 20px;
   width: 100%;
 }
+
+p.sitedesc {
+  position: relative; 
+  margin-top: 20px;
+  width: 100%;
+  font-weight: 498;
+  line-height: 40px;
+  font-size: 7.5 em;
+  /* text-align: justify ; */
+}
+
 
 p.copyright {
   position: absolute;
