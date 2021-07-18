@@ -18,12 +18,12 @@ footer {
 
 p.sitedesc {
   position: relative; 
-  margin-top: 20px;
+  top: -40px;
   width: 100%;
   font-weight: 498;
   line-height: 40px;
-  font-size: 7.5 em;
-  /* text-align: justify ; */
+  font-size: 1em;
+  text-align: center; 
 }
 
 
