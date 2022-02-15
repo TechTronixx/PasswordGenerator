@@ -8,15 +8,33 @@
     line-height: 1em;
     font-size: 100%;
   }
-  
+
+  .pwaButtonHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    background-color: #3cb7d4;
+    width: 100vw;
+    padding: 1em;
+    z-index: 1;
+  }
+
+  .pwaDesc {
+    color: #000;
+  }
+
+  .insTxt {
+    color: #000;
+  }
+
   .pwaButton {
     display: flex;
     justify-content: space-center;
     align-items: center;
-    color: #fff;
     padding: 0.5em 1em;
     margin-left: 2em;
-    background-color: dodgerblue;
+    background-color: #fff;
     cursor: pointer;
     border: 1px solid transparent;
     border-radius: 50px;
@@ -24,9 +42,9 @@
 
   .pwaButton:hover {
     border: 1px solid dodgerblue;
-    background-color: #1d1d1d;
+    background-color: dodgerblue;
     color: dodgerblue;
-    box-shadow: 0 0px 15px 0 dodgerblue;
+    box-shadow: 1px 2px 8px 0 #000;
   }
 
   footer {
