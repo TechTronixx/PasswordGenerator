@@ -18,19 +18,16 @@
       href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,600;1,500&display=swap"
     />
    <link rel="manifest" href="manifest.json" />  <!-- PWA HEADER -->
-   <link rel="apple-touch-icon" href="image/icon-24.png" />
-  <link rel="apple-touch-icon" href="image/icon-32.png" />
-  <link rel="apple-touch-icon" href="image/icon-48.png" />
-  <link rel="apple-touch-icon" href="image/icon-64.png" />
-  <link rel="apple-touch-icon" href="image/icon-72.png" />
-  <link rel="apple-touch-icon" href="image/icon-96.png" />
-  <link rel="apple-touch-icon" href="image/icon-128.png" />
-  <link rel="apple-touch-icon" href="image/icon-256.png" />
-  <meta name="apple-mobile-web-app-status-bar" content="#db4938" /> 
-  <meta name="theme-color" content="#db4938" /> <!-- PWA IOS SUPPORT HEADER -->
+
   </head>
 
   <body>
+    <div class="deskPwa" style="display: none">
+      <div class="pwaButton">
+        <i class="far fa-sign-in insIco"></i>
+        <p class="insTxt">Install</p>
+      </div>
+    </div>
     <div id="page" class="flex-container wrap">
       <div class="flex-side">
         <div class="center-content">
@@ -38,10 +35,11 @@
         </div>
 
         <p class="sitedesc">
-          The goal is to generate 3 random passwords of 12 characters.
+          The goal of this site is to generate 3 random passwords of 12 characters.
           The user can choose to include numbers, letters (upper/lowercase) & symbols.
           <br/>
           There is also an option to remove ambiguous characters.
+          Once generated, the passwords can be copied to the clipboard & used as required.
         </p>
 
         <div class="center-content form">
@@ -50,14 +48,14 @@
             <input type="checkbox" id="numbers" checked="checked" />
             <span class="checkmark"></span>
           </label>
-          <label class="tip">Contains numbers : 1 2 ... 9 0</label>
+          <label class="tip">Contains numbers : 1 2 3 ... 9 0</label>
 
           <label class="container"
             >Uppercase letters
             <input type="checkbox" id="uppercases" checked="checked" />
             <span class="checkmark"></span>
           </label>
-          <label class="tip">Contains uppercase letters : A B ... Y Z</label>
+          <label class="tip">Contains uppercase letters : A B C ... Y Z</label>
 
           <label class="container"
             >Lowercase letters
@@ -141,5 +139,6 @@
     </footer>
 
     <script src="js/password-generator.js"></script>
+    <script src="PWA\script.js"></script>
   </body>
 </html>

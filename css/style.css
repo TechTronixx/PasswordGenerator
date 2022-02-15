@@ -8,6 +8,26 @@
     line-height: 1em;
     font-size: 100%;
   }
+  
+  .pwaButton {
+    display: flex;
+    justify-content: space-center;
+    align-items: center;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 2em;
+    background-color: dodgerblue;
+    cursor: pointer;
+    border: 1px solid transparent;
+    border-radius: 50px;
+  }
+
+  .pwaButton:hover {
+    border: 1px solid dodgerblue;
+    background-color: #1d1d1d;
+    color: dodgerblue;
+    box-shadow: 0 0px 15px 0 dodgerblue;
+  }
 
   footer {
     position: relative;
@@ -17,10 +37,10 @@
 
   p.sitedesc {
     width: 50%;
-    font-weight: 498;
+    font-weight: normal;
     line-height: normal;
     font-size: 1em;
-    text-align: start;
+    text-align: -webkit-right;
   }
 
   p.copyright {
