@@ -2,7 +2,12 @@ const STATIC_CACHE = "static-cache-v1";
 const static_assets = [
   "/",
   "index.html",
+  "/css/style.css",
   "/PWA/script.js",
+  "/js/icon.js",
+  "/js/password-generator.js",
+  "manifest.json",
+  "/assets/favicon.ico",
   "/assets/PWA/32.png",
   "/assets/PWA/48.png",
   "/assets/PWA/64.png",
