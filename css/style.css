@@ -18,9 +18,9 @@
   p.sitedesc {
     width: 50%;
     font-weight: 498;
-    line-height: 40px;
+    line-height: normal;
     font-size: 1em;
-    text-align: center;
+    text-align: left;
   }
 
   p.copyright {
@@ -57,7 +57,7 @@
   .result {
     background-color: #fdffff;
     height: 100vh;
-    width: 50%;
+    width: 45%;
     display: flex;
     justify-content: center;
     align-items: center;
