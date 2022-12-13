@@ -8,13 +8,17 @@ This project is a simple password generator written in JavaScript. The goal is t
 
 Demo - [Link](https://passsword-generatorx.vercel.app/)
 
-## Working
+## How it Works
 
-The password is generated with the help of javascript. The code consists of various functions to generate a password as desired by the user.
-The length of the password is set to 12 characters.
-There are 3 sets of passwords randomly generated for the user to pick as required.
-The combination consists of using various ways such as numbers, symbols, characters, which are added to charpool, and based on the requirements. The passwords are generated.
-There are further added options to include or exclude repetitive characters, as required.
+The password generator uses JavaScript functions to create random, secure passwords. The default password length is set to 12 characters, but the user has the option to change this to any desired length.
+
+When the user opens the password generator, three sets of randomly generated passwords are displayed. These passwords are created using a combination of numbers, symbols, and letters that are added to a "charpool" based on the user's preferences. The user can choose to include or exclude ambiguous characters, such as the letter "l" and the number "1", in the charpool.
+
+Once the charpool is determined, the password generator uses it to create the desired number of random passwords. The user can then select one of the generated passwords as their new password.
+
+Additionally, the user has the option to include or exclude repetitive characters in the generated passwords. This can be useful for creating passwords that are easy to remember, but still secure.
+
+Overall, the password generator offers a simple and convenient way for users to create strong, random passwords.
 
 ## Preview
 
