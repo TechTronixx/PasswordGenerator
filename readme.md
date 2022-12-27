@@ -6,7 +6,7 @@ This project is a simple password generator written in JavaScript. The goal is t
 
 ## Site Demo
 
-Demo - [Link](https://passsword-generatorx.vercel.app/)
+Demo - [Link](https://password-generatorx.vercel.app/)
 
 ## How it Works
 
