@@ -22,9 +22,8 @@ Overall, the password generator offers a simple and convenient way for users to 
 
 ## Preview
 
-<p align="center">
-  <img src="https://github.com/TechTronixx/PasswordGenerator/blob/master/S1.jpg" alt="Password Generator" />
-</p>
+![image](https://github.com/user-attachments/assets/772c2d53-947b-4fa0-ad6c-b043ffe17c60)
+
 
 ## License
 
