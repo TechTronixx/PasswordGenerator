@@ -1,0 +1,13 @@
+# FontAwesome Kit loader (contains auth token — load via CDN instead)
+js/icon.js
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+
+# Dependencies
+node_modules/
