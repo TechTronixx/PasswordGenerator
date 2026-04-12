@@ -24,6 +24,8 @@ Overall, the password generator offers a simple and convenient way for users to 
 
 ![image](https://github.com/user-attachments/assets/772c2d53-947b-4fa0-ad6c-b043ffe17c60)
 
+## Updated UI - Preview
+<img width="1092" height="1263" alt="image" src="https://github.com/user-attachments/assets/40740c81-6529-4eeb-92bb-9b98dcc33e18" />
 
 ## License
 
