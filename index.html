@@ -34,7 +34,11 @@
           aria-label="Toggle dark mode"
           title="Toggle dark / light mode"
         >
-          <iconify-icon id="theme-icon" icon="lucide:moon" width="16"></iconify-icon>
+          <iconify-icon
+            id="theme-icon"
+            icon="lucide:moon"
+            width="16"
+          ></iconify-icon>
         </button>
       </header>
 
@@ -109,7 +113,12 @@
               readonly
               placeholder="Generated password"
             />
-            <button class="refresh-btn" onclick="refreshSingle('password-1')" aria-label="Regenerate this password" title="Regenerate">
+            <button
+              class="refresh-btn"
+              onclick="refreshSingle('password-1')"
+              aria-label="Regenerate this password"
+              title="Regenerate"
+            >
               <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
             </button>
             <button class="copy-btn" onclick="copyPassword('password-1')">
@@ -123,7 +132,12 @@
               readonly
               placeholder="Generated password"
             />
-            <button class="refresh-btn" onclick="refreshSingle('password-2')" aria-label="Regenerate this password" title="Regenerate">
+            <button
+              class="refresh-btn"
+              onclick="refreshSingle('password-2')"
+              aria-label="Regenerate this password"
+              title="Regenerate"
+            >
               <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
             </button>
             <button class="copy-btn" onclick="copyPassword('password-2')">
@@ -137,14 +151,18 @@
               readonly
               placeholder="Generated password"
             />
-            <button class="refresh-btn" onclick="refreshSingle('password-3')" aria-label="Regenerate this password" title="Regenerate">
+            <button
+              class="refresh-btn"
+              onclick="refreshSingle('password-3')"
+              aria-label="Regenerate this password"
+              title="Regenerate"
+            >
               <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
             </button>
             <button class="copy-btn" onclick="copyPassword('password-3')">
               <iconify-icon icon="lucide:copy" width="14"></iconify-icon> Copy
             </button>
           </div>
-
         </section>
       </div>
 
@@ -307,7 +325,7 @@
                 ></iconify-icon>
               </button>
               <div class="faq-answer">
-                A strong password is at least 12 to 15 characters long and
+                A strong password is at least 12 to 16 characters long and
                 combines uppercase letters, lowercase letters, numbers, and
                 symbols. Avoid dictionary words, names, and predictable
                 patterns. Randomly generated passwords are significantly harder
@@ -327,8 +345,8 @@
               <div class="faq-answer">
                 If one site gets breached and you reuse passwords, attackers
                 will try the same credentials on other services (a technique
-                called credential stuffing). Unique passwords per account contain
-                the damage to a single service.
+                called credential stuffing). Unique passwords per account
+                contain the damage to a single service.
               </div>
             </div>
 
@@ -437,7 +455,10 @@
 
           document.querySelectorAll(".faq-item.open").forEach((el) => {
             el.classList.remove("open");
-            el.querySelector(".faq-question").setAttribute("aria-expanded", "false");
+            el.querySelector(".faq-question").setAttribute(
+              "aria-expanded",
+              "false",
+            );
             el.querySelector(".faq-icon").setAttribute("icon", "ph:plus");
           });
 
