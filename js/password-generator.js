@@ -1,3 +1,5 @@
+// ---- State ----
+
 const options = {
   numbers: true,
   uppercases: true,
@@ -6,26 +8,55 @@ const options = {
   similars: false,
 };
 
+let currentMode = "random"; // "random" | "passphrase"
+let selectedLength = 16;
+let toastTimer = null;
+
+// ---- Constants ----
+
+// prettier-ignore
+const WORDS = [
+  "amber","arctic","arrow","atlas","azure","badge","bamboo","basin","beacon",
+  "birch","blade","blaze","bloom","boulder","breeze","brick","bridge","bronze",
+  "brook","cabin","cedar","chalk","charm","chrome","cipher","citrus","cliff",
+  "cloud","cobalt","cobra","comet","coral","crane","creek","crest","crown",
+  "crystal","dawn","delta","desert","dusk","eagle","echo","elder","ember",
+  "falcon","fern","field","flame","flash","fleet","flint","flood","flora",
+  "foam","forge","forest","frost","galaxy","garnet","ghost","glade","glass",
+  "gleam","glide","glow","gold","grain","grand","grape","gravel","grove",
+  "guard","gust","harbor","hawk","hazel","heron","hive","holly","honey",
+  "hyper","indigo","inlet","ivory","jade","jaguar","jasper","kelp","knot",
+  "latch","lava","leaf","ledge","lens","light","lime","linen","lotus",
+  "lunar","maple","marsh","merit","mesa","mint","mist","mocha","moon",
+  "mossy","mount","nebula","night","noble","north","nova","onyx","opal",
+  "orbit","otter","palm","petal","pilot","pine","pixel","plain","plum",
+  "polar","pond","prism","pulse","quartz","quest","radar","rapid","raven",
+  "reef","ridge","rivet","robin","rocky","root","ruby","rust","sage","sand",
+  "shard","shell","shift","shore","silver","slate","slope","snow","solar",
+  "sonic","spark","spring","spruce","stack","stag","steam","steel","stone",
+  "storm","stream","surge","swift","sword","talon","teal","terra","tide",
+  "tiger","timber","token","torch","track","trail","tropic","trunk","trust",
+  "tundra","ultra","vapor","vault","veil","velvet","visor","vista","vivid",
+  "walnut","wave","wedge","wheat","willow","wind","wolf","zenith","zinc"
+];
+
 const CHAR_SETS = {
-  numbers: "1234567890",
+  numbers:    "1234567890",
   uppercases: "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
   lowercases: "abcdefghijklmnopqrstuvwxyz",
-  symbols: "!?@#$%&*+-=",
+  symbols:    "!?@#$%&*+-=",
 };
 
 const CHAR_SETS_NO_SIMILAR = {
-  numbers: "2345679",
+  numbers:    "2345679",
   uppercases: "ACDEFGHJKLMNPRSTUVWXYZ",
   lowercases: "abcdefghijkmnopqrstuvwxyz",
-  symbols: "?#$%&*+-=",
+  symbols:    "?#$%&*+-=",
 };
 
 const PASSWORD_COUNT = 3;
-let selectedLength = 16;
-let charPool = buildCharPool();
-let toastTimer = null;
 
-// ---- Char pool ----
+// ---- Generation helpers ----
 
 function buildCharPool() {
   const sets = options.similars ? CHAR_SETS_NO_SIMILAR : CHAR_SETS;
@@ -35,59 +66,37 @@ function buildCharPool() {
     .join("");
 }
 
-function updateCharPool() {
-  charPool = buildCharPool();
+function generateRandom() {
+  const pool = buildCharPool();
+  if (!pool) return "";
+  return Array.from(
+    { length: selectedLength },
+    () => pool[Math.floor(Math.random() * pool.length)],
+  ).join("");
 }
 
-// ---- Event listeners ----
+function generatePhrase() {
+  const wordCount = selectedLength === 12 ? 3 : 4;
+  return Array.from(
+    { length: wordCount },
+    () => WORDS[Math.floor(Math.random() * WORDS.length)],
+  ).join("-");
+}
 
-["numbers", "uppercases", "lowercases", "symbols", "similars"].forEach((id) => {
-  document.getElementById(id).addEventListener("change", function () {
-    options[id] = this.checked;
-    updateCharPool();
-    updateSubmitButton();
-  });
-});
-
-document.querySelectorAll('input[name="length"]').forEach((input) => {
-  input.addEventListener("change", function () {
-    selectedLength = Number(this.value);
-    document
-      .querySelectorAll(".toggle-option")
-      .forEach((opt) => opt.classList.remove("active"));
-    this.closest(".toggle-option").classList.add("active");
-  });
-});
-
-document
-  .getElementById("submit-btn")
-  .addEventListener("click", generatePasswords);
-document
-  .getElementById("strength-password")
-  .addEventListener("input", testPasswordStrength);
-
-// ---- Generator ----
+// ---- Generate ----
 
 function generatePasswords() {
-  if (!charPool) return;
-  const passwords = Array.from({ length: PASSWORD_COUNT }, () =>
-    Array.from(
-      { length: selectedLength },
-      () => charPool[Math.floor(Math.random() * charPool.length)],
-    ).join(""),
-  );
-  document.getElementById("password-1").value = passwords[0];
-  document.getElementById("password-2").value = passwords[1];
-  document.getElementById("password-3").value = passwords[2];
+  for (let i = 1; i <= PASSWORD_COUNT; i++) {
+    const pw = currentMode === "passphrase" ? generatePhrase() : generateRandom();
+    if (pw) document.getElementById(`password-${i}`).value = pw;
+  }
 }
 
-function updateSubmitButton() {
-  const allOff =
-    !options.numbers &&
-    !options.uppercases &&
-    !options.lowercases &&
-    !options.symbols;
-  document.getElementById("submit-btn").classList.toggle("inactive", allOff);
+function refreshSingle(id) {
+  const pw = currentMode === "passphrase" ? generatePhrase() : generateRandom();
+  if (pw) document.getElementById(id).value = pw;
+  // Return focus to body so Space shortcut works immediately after
+  document.activeElement.blur();
 }
 
 // ---- Copy ----
@@ -95,7 +104,6 @@ function updateSubmitButton() {
 function copyPassword(id) {
   const el = document.getElementById(id);
   if (!el.value) return;
-
   if (navigator.clipboard) {
     navigator.clipboard.writeText(el.value).then(() => showToast("Copied!"));
   } else {
@@ -103,17 +111,6 @@ function copyPassword(id) {
     document.execCommand("copy");
     showToast("Copied!");
   }
-}
-
-// ---- Toast ----
-
-function showToast(message) {
-  const toast = document.getElementById("toast");
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add("show");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
 }
 
 // ---- Strength test ----
@@ -132,7 +129,7 @@ function testPasswordStrength() {
   }
 
   let score = 0;
-  if (password.length >= 8) score++;
+  if (password.length >= 8)  score++;
   if (password.length >= 12) score++;
   if (password.length >= 16) score++;
   if (/[a-z]/.test(password)) score++;
@@ -141,20 +138,124 @@ function testPasswordStrength() {
   if (/[^a-zA-Z0-9]/.test(password)) score++;
 
   const percent = Math.min(100, (score / 7) * 100);
-  fill.style.width = percent + "%";
+  fill.style.width = `${percent}%`;
 
-  let level;
-  if (percent <= 28) level = ["weak", "Weak"];
-  else if (percent <= 57) level = ["medium", "Medium"];
-  else if (percent <= 85) level = ["strong", "Strong"];
-  else level = ["very-strong", "Very Strong"];
-
-  fill.className = `strength-fill ${level[0]}`;
-  text.className = `strength-text ${level[0]}`;
-  text.textContent = level[1];
+  const levels = [
+    [28,  "weak",        "Weak"],
+    [57,  "medium",      "Medium"],
+    [85,  "strong",      "Strong"],
+    [100, "very-strong", "Very Strong"],
+  ];
+  const [, cls, label] = levels.find(([max]) => percent <= max) ?? levels[3];
+  fill.className = `strength-fill ${cls}`;
+  text.className = `strength-text ${cls}`;
+  text.textContent = label;
 }
+
+// ---- Toast ----
+
+function showToast(message) {
+  const toast = document.getElementById("toast");
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add("show");
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => toast.classList.remove("show"), 1400);
+}
+
+// ---- UI state ----
+
+function setSubmitState() {
+  const allOff =
+    !options.numbers && !options.uppercases && !options.lowercases && !options.symbols;
+  document.getElementById("submit-btn").classList.toggle("inactive", allOff || currentMode === "passphrase" ? false : allOff);
+  // In passphrase mode, generate is always enabled
+  if (currentMode === "passphrase") {
+    document.getElementById("submit-btn").classList.remove("inactive");
+  }
+}
+
+// ---- Event listeners ----
+
+// Checkbox options
+["numbers", "uppercases", "lowercases", "symbols", "similars"].forEach((id) => {
+  document.getElementById(id).addEventListener("change", function () {
+    options[id] = this.checked;
+    setSubmitState();
+  });
+});
+
+// Length toggle — scope active reset to this group only
+document.querySelectorAll('input[name="length"]').forEach((input) => {
+  input.addEventListener("change", function () {
+    selectedLength = Number(this.value);
+    this.closest(".toggle-group")
+      .querySelectorAll(".toggle-option")
+      .forEach((opt) => opt.classList.remove("active"));
+    this.closest(".toggle-option").classList.add("active");
+  });
+});
+
+// Mode toggle — scope active reset to this group only
+document.querySelectorAll('input[name="mode"]').forEach((input) => {
+  input.addEventListener("change", function () {
+    currentMode = this.value;
+    document
+      .querySelector(".options-list")
+      .classList.toggle("disabled", currentMode === "passphrase");
+    this.closest(".toggle-group")
+      .querySelectorAll(".toggle-option")
+      .forEach((opt) => opt.classList.remove("active"));
+    this.closest(".toggle-option").classList.add("active");
+    setSubmitState();
+    generatePasswords();
+  });
+});
+
+// Generate button — blur after so Space shortcut works immediately
+document.getElementById("submit-btn").addEventListener("click", () => {
+  generatePasswords();
+  document.getElementById("submit-btn").blur();
+});
+
+// Strength tester — live as you type
+document.getElementById("strength-password").addEventListener("input", testPasswordStrength);
+
+// Space to regenerate — only fires when nothing is focused
+document.addEventListener("keydown", (e) => {
+  if (e.code !== "Space") return;
+  if (document.activeElement && document.activeElement !== document.body) return;
+  e.preventDefault();
+  if (!document.getElementById("submit-btn").classList.contains("inactive")) {
+    generatePasswords();
+  }
+});
+
+// Theme toggle — respects system preference, persists to localStorage
+(function initTheme() {
+  const root   = document.documentElement;
+  const btn    = document.getElementById("theme-toggle");
+  const icon   = document.getElementById("theme-icon");
+  const stored = localStorage.getItem("pg-theme");
+
+  function applyTheme(dark) {
+    root.setAttribute("data-theme", dark ? "dark" : "light");
+    icon.setAttribute("icon", dark ? "lucide:sun" : "lucide:moon");
+    btn.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+
+  const prefersDark =
+    stored === "dark" || (!stored && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  applyTheme(prefersDark);
+
+  btn.addEventListener("click", () => {
+    const isDark = root.getAttribute("data-theme") === "dark";
+    applyTheme(!isDark);
+    localStorage.setItem("pg-theme", !isDark ? "dark" : "light");
+  });
+})();
 
 // ---- Init ----
 
-updateCharPool();
-updateSubmitButton();
+document.getElementById("year").textContent = new Date().getFullYear();
+setSubmitState();

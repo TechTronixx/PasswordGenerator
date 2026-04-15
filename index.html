@@ -4,29 +4,58 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Password Generator — Secure & Free</title>
-    <meta name="description" content="Generate secure random passwords instantly. Choose length, character types, and test password strength." />
+    <meta
+      name="description"
+      content="Generate secure random passwords instantly. Choose length, character types, and test password strength."
+    />
     <meta name="theme-color" content="#111111" />
     <link rel="shortcut icon" type="image/x-icon" href="assets/favicon.ico" />
     <link rel="manifest" href="manifest.json" />
     <link rel="stylesheet" href="css/style.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
-    <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js" defer></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+    <script
+      src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"
+      defer
+    ></script>
   </head>
   <body>
     <main class="container">
-
       <header class="header">
         <h1>Password Generator</h1>
         <p class="tagline">Create secure passwords instantly</p>
+        <button
+          id="theme-toggle"
+          class="theme-toggle"
+          aria-label="Toggle dark mode"
+          title="Toggle dark / light mode"
+        >
+          <iconify-icon id="theme-icon" icon="lucide:moon" width="16"></iconify-icon>
+        </button>
       </header>
 
       <!-- Generator widget -->
       <div class="layout-row">
-
         <section class="card options" aria-label="Password options">
           <div class="length-toggle">
+            <span class="length-label">Mode</span>
+            <div class="toggle-group">
+              <label class="toggle-option active">
+                <input type="radio" name="mode" value="random" checked />
+                <span>Random</span>
+              </label>
+              <label class="toggle-option">
+                <input type="radio" name="mode" value="passphrase" />
+                <span>Passphrase</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="length-toggle length-toggle--gap">
             <span class="length-label">Length</span>
             <div class="toggle-group">
               <label class="toggle-option">
@@ -67,38 +96,70 @@
             <iconify-icon icon="lucide:shuffle" width="15"></iconify-icon>
             Generate
           </button>
+          <p class="kbd-hint">
+            Press <kbd class="kbd">Space</kbd> anywhere to regenerate
+          </p>
         </section>
 
         <section class="card results" aria-label="Generated passwords">
           <div class="result-row">
-            <input type="text" id="password-1" readonly placeholder="Generated password" />
+            <input
+              type="text"
+              id="password-1"
+              readonly
+              placeholder="Generated password"
+            />
+            <button class="refresh-btn" onclick="refreshSingle('password-1')" aria-label="Regenerate this password" title="Regenerate">
+              <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
+            </button>
             <button class="copy-btn" onclick="copyPassword('password-1')">
               <iconify-icon icon="lucide:copy" width="14"></iconify-icon> Copy
             </button>
           </div>
           <div class="result-row">
-            <input type="text" id="password-2" readonly placeholder="Generated password" />
+            <input
+              type="text"
+              id="password-2"
+              readonly
+              placeholder="Generated password"
+            />
+            <button class="refresh-btn" onclick="refreshSingle('password-2')" aria-label="Regenerate this password" title="Regenerate">
+              <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
+            </button>
             <button class="copy-btn" onclick="copyPassword('password-2')">
               <iconify-icon icon="lucide:copy" width="14"></iconify-icon> Copy
             </button>
           </div>
           <div class="result-row">
-            <input type="text" id="password-3" readonly placeholder="Generated password" />
+            <input
+              type="text"
+              id="password-3"
+              readonly
+              placeholder="Generated password"
+            />
+            <button class="refresh-btn" onclick="refreshSingle('password-3')" aria-label="Regenerate this password" title="Regenerate">
+              <iconify-icon icon="lucide:refresh-cw" width="14"></iconify-icon>
+            </button>
             <button class="copy-btn" onclick="copyPassword('password-3')">
               <iconify-icon icon="lucide:copy" width="14"></iconify-icon> Copy
             </button>
           </div>
-        </section>
 
+        </section>
       </div>
 
       <!-- Strength tester -->
       <section class="card strength-test" aria-label="Password strength test">
         <h2>Password Strength Test</h2>
         <div class="strength-input">
-          <input type="text" id="strength-password" placeholder="Enter password to test" />
+          <input
+            type="text"
+            id="strength-password"
+            placeholder="Enter password to test"
+          />
           <button class="test-btn" onclick="testPasswordStrength()">
-            <iconify-icon icon="lucide:shield-check" width="15"></iconify-icon> Test
+            <iconify-icon icon="lucide:shield-check" width="15"></iconify-icon>
+            Test
           </button>
         </div>
         <div class="strength-meter">
@@ -112,97 +173,179 @@
       <!-- Credential illustration -->
       <div class="hero-illustration" aria-hidden="true">
         <div class="hero-bg">
-
-          <div class="cred-card" style="top:18%;left:28%;z-index:4;">
-            <div class="cred-logo uber"><iconify-icon icon="simple-icons:uber" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 18%; left: 28%; z-index: 4">
+            <div class="cred-logo uber">
+              <iconify-icon
+                icon="simple-icons:uber"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Alias</span>
-              <span class="cred-value">uber.<span class="cred-highlight">b12n2</span>@passmail.com</span>
+              <span class="cred-value"
+                >uber.<span class="cred-highlight">b12n2</span
+                >@passmail.com</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:eye" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:eye" width="14"></iconify-icon>
+            </div>
           </div>
 
-          <div class="cred-card" style="top:36%;left:8%;z-index:3;">
-            <div class="cred-logo netflix"><iconify-icon icon="simple-icons:netflix" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 36%; left: 8%; z-index: 3">
+            <div class="cred-logo netflix">
+              <iconify-icon
+                icon="simple-icons:netflix"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Password</span>
-              <span class="cred-value cred-dots">&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span>
+              <span class="cred-value cred-dots"
+                >&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:lock" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:lock" width="14"></iconify-icon>
+            </div>
           </div>
 
-          <div class="cred-card" style="top:36%;left:52%;z-index:3;">
-            <div class="cred-logo booking"><iconify-icon icon="simple-icons:bookingdotcom" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 36%; left: 52%; z-index: 3">
+            <div class="cred-logo booking">
+              <iconify-icon
+                icon="simple-icons:bookingdotcom"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Password</span>
-              <span class="cred-value cred-dots">&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span>
+              <span class="cred-value cred-dots"
+                >&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:lock" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:lock" width="14"></iconify-icon>
+            </div>
           </div>
 
-          <div class="cred-card" style="top:55%;left:22%;z-index:5;">
-            <div class="cred-logo facebook"><iconify-icon icon="simple-icons:facebook" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 55%; left: 22%; z-index: 5">
+            <div class="cred-logo facebook">
+              <iconify-icon
+                icon="simple-icons:facebook"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Password</span>
-              <span class="cred-value">23sxl!s<span class="cred-highlight">4300</span>irhl&amp;lekLg</span>
+              <span class="cred-value"
+                >23sxl!s<span class="cred-highlight">4300</span
+                >irhl&amp;lekLg</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:eye" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:eye" width="14"></iconify-icon>
+            </div>
           </div>
 
-          <div class="cred-card" style="top:55%;left:58%;z-index:4;">
-            <div class="cred-logo amazon"><iconify-icon icon="simple-icons:amazon" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 55%; left: 58%; z-index: 4">
+            <div class="cred-logo amazon">
+              <iconify-icon
+                icon="simple-icons:amazon"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Alias</span>
-              <span class="cred-value">amazon.<span class="cred-highlight">b12n2</span>@passmail.com</span>
+              <span class="cred-value"
+                >amazon.<span class="cred-highlight">b12n2</span
+                >@passmail.com</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:eye" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:eye" width="14"></iconify-icon>
+            </div>
           </div>
 
-          <div class="cred-card" style="top:73%;left:32%;z-index:3;">
-            <div class="cred-logo spotify"><iconify-icon icon="simple-icons:spotify" width="16" style="color:#fff"></iconify-icon></div>
+          <div class="cred-card" style="top: 73%; left: 32%; z-index: 3">
+            <div class="cred-logo spotify">
+              <iconify-icon
+                icon="simple-icons:spotify"
+                width="16"
+                style="color: #fff"
+              ></iconify-icon>
+            </div>
             <div class="cred-info">
               <span class="cred-label">Password</span>
-              <span class="cred-value cred-dots">&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span>
+              <span class="cred-value cred-dots"
+                >&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;&#9679;</span
+              >
             </div>
-            <div class="cred-action"><iconify-icon icon="lucide:lock" width="14"></iconify-icon></div>
+            <div class="cred-action">
+              <iconify-icon icon="lucide:lock" width="14"></iconify-icon>
+            </div>
           </div>
-
         </div>
       </div>
 
       <!-- FAQ -->
       <section class="faq-section" aria-label="Frequently asked questions">
-        <h2 class="faq-heading">Password generator FAQs</h2>
+        <h2 class="faq-heading">FAQ</h2>
         <div class="faq-grid">
-
           <div class="faq-col">
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>What makes a strong password?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                A strong password is at least 12 characters long and combines uppercase letters, lowercase letters, numbers, and symbols. Avoid dictionary words, names, and predictable patterns. Randomly generated passwords are significantly harder to crack than ones you invent yourself.
+                A strong password is at least 12 to 15 characters long and
+                combines uppercase letters, lowercase letters, numbers, and
+                symbols. Avoid dictionary words, names, and predictable
+                patterns. Randomly generated passwords are significantly harder
+                to crack than ones you invent yourself.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>Why should I use a unique password for every site?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                If one site gets breached and you reuse passwords, attackers will try the same credentials on other services — a technique called credential stuffing. Unique passwords per account contain the damage to a single service.
+                If one site gets breached and you reuse passwords, attackers
+                will try the same credentials on other services (a technique
+                called credential stuffing). Unique passwords per account contain
+                the damage to a single service.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>When should I change my password?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                Change a password immediately if a service reports a data breach, if you suspect unauthorized access, or if you shared it with someone. Routine periodic changes are less important than using strong, unique passwords from the start.
+                Change a password immediately if a service reports a data
+                breach, if you suspect unauthorized access, or if you shared it
+                with someone. Routine periodic changes are less important than
+                using strong, unique passwords from the start.
               </div>
             </div>
           </div>
@@ -211,77 +354,97 @@
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>What is a password manager?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                A password manager securely stores all your passwords in an encrypted vault. It generates strong, unique passwords for every account and autofills them when you log in — so you only need to remember one master password.
+                A password manager stores all your passwords in an encrypted
+                vault. It generates a unique password for every account and
+                autofills it when you log in, so you only need to remember one
+                master password.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>What are ambiguous characters?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                Ambiguous characters are visually similar glyphs like the letter O and digit 0, or lowercase l and the digit 1. Excluding them makes generated passwords easier to read and type manually without errors.
+                Ambiguous characters are visually similar glyphs like the letter
+                O and digit 0, or lowercase l and the digit 1. Excluding them
+                makes generated passwords easier to read and type manually
+                without errors.
               </div>
             </div>
 
             <div class="faq-item">
               <button class="faq-question" aria-expanded="false">
                 <span>What is two-factor authentication?</span>
-                <iconify-icon icon="ph:plus" class="faq-icon" width="16"></iconify-icon>
+                <iconify-icon
+                  icon="ph:plus"
+                  class="faq-icon"
+                  width="16"
+                ></iconify-icon>
               </button>
               <div class="faq-answer">
-                Two-factor authentication (2FA) adds a second verification step — like a code from an authenticator app — on top of your password. Even if your password is compromised, an attacker still cannot access your account without the second factor.
+                Two-factor authentication (2FA) adds a second verification step
+                on top of your password, like a code from an authenticator app.
+                Even if your password is compromised, an attacker still cannot
+                access your account without that second factor.
               </div>
             </div>
           </div>
-
         </div>
       </section>
 
       <footer class="footer">
         <p>© Awais <span id="year"></span></p>
       </footer>
-
     </main>
 
     <!-- Toast notification -->
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
     <!-- PWA install banner -->
-    <div class="pwaButtonHolder" style="display:none" role="banner">
+    <div class="pwaButtonHolder" style="display: none" role="banner">
       <button class="pwaButton">Install App</button>
-      <button class="pwaClose" onclick="closePWA()" aria-label="Close install prompt">&#x2715;</button>
+      <button
+        class="pwaClose"
+        onclick="closePWA()"
+        aria-label="Close install prompt"
+      >
+        &#x2715;
+      </button>
     </div>
 
     <!-- Scripts -->
     <script src="js/password-generator.js"></script>
     <script src="PWA/script.js"></script>
     <script>
-      // Auto-update copyright year
-      document.getElementById('year').textContent = new Date().getFullYear();
-
       // FAQ accordion
-      document.querySelectorAll('.faq-question').forEach(btn => {
-        btn.addEventListener('click', () => {
-          const item = btn.closest('.faq-item');
-          const isOpen = item.classList.contains('open');
+      document.querySelectorAll(".faq-question").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const item = btn.closest(".faq-item");
+          const isOpen = item.classList.contains("open");
 
-          // Close all open items
-          document.querySelectorAll('.faq-item.open').forEach(el => {
-            el.classList.remove('open');
-            el.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-            el.querySelector('.faq-icon').setAttribute('icon', 'ph:plus');
+          document.querySelectorAll(".faq-item.open").forEach((el) => {
+            el.classList.remove("open");
+            el.querySelector(".faq-question").setAttribute("aria-expanded", "false");
+            el.querySelector(".faq-icon").setAttribute("icon", "ph:plus");
           });
 
-          // Open clicked item if it was closed
           if (!isOpen) {
-            item.classList.add('open');
-            btn.setAttribute('aria-expanded', 'true');
-            btn.querySelector('.faq-icon').setAttribute('icon', 'ph:minus');
+            item.classList.add("open");
+            btn.setAttribute("aria-expanded", "true");
+            btn.querySelector(".faq-icon").setAttribute("icon", "ph:minus");
           }
         });
       });
